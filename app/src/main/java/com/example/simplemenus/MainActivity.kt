@@ -42,13 +42,13 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.action_send ->{
-                val intent = Intent(Intent.ACTION_SEND).apply {
-                    type = "message/rfc822"
-//                    data = Uri.parse("mailto:")
+                val intent = Intent(Intent.ACTION_SENDTO).apply {
+//                    type = "message/rfc822"
+                    data = Uri.parse("mailto:")
                     putExtra(Intent.EXTRA_EMAIL, arrayOf("empfaenger@email.de"))
                     putExtra(Intent.EXTRA_SUBJECT, "Betreffzeile")
                     putExtra(Intent.EXTRA_TEXT, "Hier steht der Inhalt der E-Mail")
-
+                    setPackage("com.google.android.gm")
                 }
                 if(intent.resolveActivity(packageManager)!= null)
                     startActivity(intent)
