@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
+import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
+
 import androidx.appcompat.widget.Toolbar
 import com.example.simplemenus.databinding.ActivityMainBinding
 
@@ -26,6 +29,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main,menu)
+
+        val search = menu!!.findItem(R.id.app_bar_search)
+        val searchView = search.actionView as SearchView
+        searchView.queryHint = "Was soll gesucht werden?"
+        searchView.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Toast.makeText(this@MainActivity, "Suche nach $query", Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+               return true
+            }
+
+        })
+
         return true
     }
 
@@ -55,9 +74,6 @@ class MainActivity : AppCompatActivity() {
                 else
                     Toast.makeText(this@MainActivity, "Kein E-Mail-Programm vorhanden", Toast.LENGTH_SHORT)
                         .show()
-
-
-                
                 true
             }
             else -> super.onOptionsItemSelected(item)
