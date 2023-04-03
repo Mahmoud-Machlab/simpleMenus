@@ -3,6 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/action_send"
+        android:title="Send"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_xy"
+        android:icon="@android:drawable/checkbox_on_background"
+        android:title="Das ist ein Eintrag mit viel Text" />
+    <item
+        android:id="@+id/action_delete"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:orderInCategory="20"
+        android:title="Delete"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_settings"
+        android:orderInCategory="10"
         android:title="Settings" />
+    <item
+        android:title="withSub"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/action_sub"
+                android:title="sub_action" />
+        </menu>
+    </item>
 </menu>
