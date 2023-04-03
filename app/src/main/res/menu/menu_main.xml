@@ -4,7 +4,14 @@
 
     <item
         android:id="@+id/action_send"
+        android:icon="@android:drawable/ic_menu_send"
         android:title="Send"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Search"
+        app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_xy"
@@ -25,8 +32,8 @@
         app:showAsAction="ifRoom">
         <menu>
             <item
-                android:id="@+id/action_sub"
-                android:title="sub_action" />
+                android:id="@+id/action_next"
+                android:title="next Activity" />
         </menu>
     </item>
 </menu>
