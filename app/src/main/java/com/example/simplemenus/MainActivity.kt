@@ -1,5 +1,7 @@
 package com.example.simplemenus
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -32,6 +34,30 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId){
             R.id.action_settings -> {
                 Toast.makeText(this, "Settings wurde getippt", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.action_next ->{ // weiter zur nächsten Activity
+                val intent = Intent(this,NextActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.action_send ->{
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "message/rfc822"
+//                    data = Uri.parse("mailto:")
+                    putExtra(Intent.EXTRA_EMAIL, arrayOf("empfaenger@email.de"))
+                    putExtra(Intent.EXTRA_SUBJECT, "Betreffzeile")
+                    putExtra(Intent.EXTRA_TEXT, "Hier steht der Inhalt der E-Mail")
+
+                }
+                if(intent.resolveActivity(packageManager)!= null)
+                    startActivity(intent)
+                else
+                    Toast.makeText(this@MainActivity, "Kein E-Mail-Programm vorhanden", Toast.LENGTH_SHORT)
+                        .show()
+
+
+                
                 true
             }
             else -> super.onOptionsItemSelected(item)
